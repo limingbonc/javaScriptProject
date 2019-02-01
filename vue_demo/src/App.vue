@@ -1,32 +1,43 @@
 <template>
-  <div >
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对React的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <Add/>
-      <List/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader/>
+      <TodoList :todos="todos"/>
+      <TodoFoot/>
     </div>
   </div>
 </template>
-<!--1.导入组件，2映射成标签-->
+
 <script>
-import Add from './components/Add.vue'
-import List from './components/List.vue'
+import TodoHeader from  './components/TodoHeader.vue'
+import TodoFoot  from  './components/TodoFoot.vue'
+import TodoList from './components/TodoList.vue'
 export default {
-  components: {
-    List,
-    Add
+  data(){
+    return{
+     todos:[
+       {title:'吃饭 ',complete:false},
+       {title:'睡觉 ',complete:true},
+       {title:'coding ',complete:false},
+     ]
+    }
+  },
+   components:{
+     TodoList,
+     TodoFoot,
+     TodoHeader
+   }
   }
-}
 </script>
 
 <style scoped>
-
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
