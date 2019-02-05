@@ -1,9 +1,9 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader/>
-      <TodoList :todos="todos"/>
-      <TodoFoot/>
+      <TodoHeader :addTodo="addTodo"/>
+      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
+      <TodoFoot :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" :selectAll="selectAll"/>
     </div>
   </div>
 </template>
@@ -20,6 +20,22 @@ export default {
        {title:'睡觉 ',complete:true},
        {title:'coding ',complete:false},
      ]
+    }
+  },
+  methods:{
+    addTodo(todo){
+      this.todos.unshift(todo);
+    },
+    deleteTodo(index){
+      this.todos.splice(index,1);
+    },
+    //删除所有已完成的
+    deleteCompleteTodos(){
+      this.todos = this.todos.filter(todo => !todo.complete) //留下所有没选中的,即为false的
+    },
+     //全选/全不选
+    selectAll(check){ //传递的参数是全选按钮的结果
+        this.todos.forEach(todo => todo.complete =check)
     }
   },
    components:{

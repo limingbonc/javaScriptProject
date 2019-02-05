@@ -1,6 +1,6 @@
 <template>
   <ul class="todo-main">
-   <TodoItem v-for="(todo,index) in todos" :key="index" :index="index" :todo="todo"/>
+   <TodoItem v-for="(todo,index) in todos" :key="index" :index="index" :todo="todo" :deleteTodo="deleteTodo"/>
   </ul>
 </template>
 
@@ -9,7 +9,8 @@ import TodoItem from './TodoItem.vue'
     export default {
         name: "TodoList",
        props:{
-        todos:Array  //申明接收组件
+        todos:Array,  //申明接收组件,
+         deleteTodo:Function
        },
        components:{
          TodoItem
